@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Generator</title>
+    <script>
+        const Generate = () => {
+
+          
+
+            let text1 = document.getElementById('text1').value;
+            let text2 = document.getElementById('text2').value;
+            let text3 = document.getElementById('text3').value;
+            let num = document.getElementById('num').value;
+            for (let i = 1; i <= num; i++) {
+                let value = text1 + text2 + text3 + i;
+
+                var container = document.createElement("div");
+                container.className = "container";
+
+                var p = document.createElement("p");
+                var button = document.createElement("button");
+                button.innerText = "Copy";
+                button.onclick =() => Copy(value);
+
+                // Set the text content of the <p> element
+                p.textContent = value;
+                // Find the target element where the <p> should be inserted
+                var root = document.getElementById("root");
+                container.appendChild(p);
+                container.appendChild(button);
+                
+                root.appendChild(container)
+            }
+
+        }
+        const Copy = (value) => {
+            navigator.clipboard.writeText(value).then(function () {
+                alert("Copied the text: " + value);
+            }).catch(function (error) {
+                alert("Copy failed: " + error);
+            });
+        }
+
+    </script>
+    <style>
+        .header{
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: red;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header"><p>Tag Generator</p></header>
+    <label>Text 1</label>
+    <input type="text" width="50px" id="text1">
+    <br>
+    <br>
+    <label>Text 1</label>
+    <input type="text" width="50px" id="text2">
+    <br>
+    <br>
+    <label>Text 1</label>
+    <input type="text" width="50px" id="text3">
+    <br>
+    <br>
+    <label>count</label>
+    <input type="number" width="50px" id="num">
+    <br>
+    <br>
+    <button onclick={Generate()}>Click</button>
+    <div id="root">
+
+    </div>
+</body>
+
+</html>
